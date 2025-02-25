@@ -5,11 +5,14 @@ import com.sousa.meal_planner.models.database.MealMO;
 import com.sousa.meal_planner.models.database.PantryMO;
 import com.sousa.meal_planner.models.dto.CartDTO;
 import com.sousa.meal_planner.models.dto.MealDTO;
+import com.sousa.meal_planner.models.dto.MonthCostDTO;
 import com.sousa.meal_planner.models.dto.PantryDTO;
 import com.sousa.meal_planner.models.enums.ItemTypeEnum;
 import org.mapstruct.Mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Mapper(componentModel = "spring")
 public interface MealsMapper {
@@ -43,4 +46,58 @@ public interface MealsMapper {
     List<PantryMO> toPantryMOList(List<PantryDTO> pantryDTO);
 
     List<PantryDTO> toPantryDTOList(List<PantryMO> pantryMO);
+
+    default List<MonthCostDTO> toMonthCostDTOList(Map<Integer, Double> monthCost){
+        return List.of(
+                MonthCostDTO.builder()
+                        .month(1)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(1, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(2)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(2, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(3)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(3, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(4)
+                            .cost(BigDecimal.valueOf(monthCost.getOrDefault(4, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(5)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(5, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(6)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(6, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(7)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(7, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(8)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(8, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(9)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(9, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(10)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(10, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(11)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(11, 0.0)))
+                        .build(),
+                MonthCostDTO.builder()
+                        .month(12)
+                        .cost(BigDecimal.valueOf(monthCost.getOrDefault(12, 0.0)))
+                        .build()
+        );
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.sousa.meal_planner.controllers.contracts;
 
 import com.sousa.meal_planner.models.dto.MealDTO;
+import com.sousa.meal_planner.models.dto.MonthCostDTO;
 import com.sousa.meal_planner.models.dto.PantryDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -80,4 +82,14 @@ public interface MealsApi {
             @PathVariable int id,
             @RequestParam LocalDate newDate,
             @RequestParam String mealType) throws Exception;
+
+    @Operation(summary = "Get month total cost", operationId = "getMonthTotalCost", tags = "meals")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Month total cost retrieved successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MealDTO.class))),
+            @ApiResponse(responseCode = "404", description = "No month total cost found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
+    @GetMapping("/year/{year}")
+    ResponseEntity<List<MonthCostDTO>> getMonthTotalCost(
+            @PathVariable int year);
 }

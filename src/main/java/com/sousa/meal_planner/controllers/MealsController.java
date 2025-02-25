@@ -2,6 +2,7 @@ package com.sousa.meal_planner.controllers;
 
 import com.sousa.meal_planner.controllers.contracts.MealsApi;
 import com.sousa.meal_planner.models.dto.MealDTO;
+import com.sousa.meal_planner.models.dto.MonthCostDTO;
 import com.sousa.meal_planner.models.dto.PantryDTO;
 import com.sousa.meal_planner.services.MealsService;
 import lombok.RequiredArgsConstructor;
@@ -51,5 +52,10 @@ public class MealsController implements MealsApi {
     public ResponseEntity<String> addMeal(int id, LocalDate newDate, String mealType) throws Exception {
         mealsService.addNewMeal(id, newDate, mealType);
         return ResponseEntity.ok("Meal added successfully");
+    }
+
+    @Override
+    public ResponseEntity<List<MonthCostDTO>> getMonthTotalCost(int year) {
+        return ResponseEntity.ok(mealsService.getMonthTotalCost(year));
     }
 }

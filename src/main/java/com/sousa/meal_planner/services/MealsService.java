@@ -4,6 +4,7 @@ import com.sousa.meal_planner.mappers.MealsMapper;
 import com.sousa.meal_planner.models.database.MealMO;
 import com.sousa.meal_planner.models.database.PantryMO;
 import com.sousa.meal_planner.models.dto.MealDTO;
+import com.sousa.meal_planner.models.dto.MonthCostDTO;
 import com.sousa.meal_planner.models.dto.PantryDTO;
 import com.sousa.meal_planner.models.enums.MealType;
 import com.sousa.meal_planner.repositories.MealRepository;
@@ -11,8 +12,11 @@ import com.sousa.meal_planner.repositories.PantryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -117,5 +121,23 @@ public class MealsService {
             pantryRepository.save(pantryMO);
         }
 
+    }
+
+    public List<MonthCostDTO> getMonthTotalCost(int year) {
+        LocalDate firstDayOfYear = LocalDate.of(year, 1, 1);
+        LocalDate lastDayOfYear = LocalDate.of(year, 12, 31);
+        List<MealMO> meals = mealRepository.findAllByDateBetween(firstDayOfYear, lastDayOfYear);
+        Map<Integer, Double> monthCost = new HashMap<>();
+
+        for (MealMO meal : meals) {
+            int month = meal.getDate().getMonthValue();
+            BigDecimal cost = meal.getItemPrice();
+            if (monthCost.containsKey(month)) {
+                monthCost.put(month, monthCost.get(month) + cost.doubleValue());
+            } else {
+                monthCost.put(month, cost.doubleValue());
+            }
+        }
+        return mealsMapper.toMonthCostDTOList(monthCost);
     }
 }
