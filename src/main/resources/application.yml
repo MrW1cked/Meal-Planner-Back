@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5332/postgres
+    username: local-user
+    password: local-password
+    driver-class-name: org.postgresql.Driver
+
+  application:
+    name: meal-planner
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 9998
