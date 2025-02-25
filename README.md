@@ -1,5 +1,7 @@
 # Meal Planner - README
 
+![Screenshot](./src/main/resources/images/FrontImage.png)
+
 This repository contains a Meal Planning application, which includes:
 
 - **Backend** in Spring Boot, responsible for:
@@ -117,3 +119,44 @@ Example:
   "itemColour": "#FFC0CB",
   "itemPrice": 0
 }
+```
+
+### PantryDTO
+Example:
+```json
+{
+  "id": 999,
+  "itemType": "MEAT",
+  "itemName": "Chicken",
+  "itemColour": "#FFC0CB",
+  "itemPricePerDosis": 1.5,
+  "itemTotalDosis": 10
+}
+```
+
+## Project Structure
+
+- **src/main/java**: Contains the Java source code for the backend.
+    - **controllers**: REST controllers implementing the API endpoints.
+    - **models/dto**: Data Transfer Objects (MealDTO, PantryDTO).
+    - **models/enums**: Enumerations for meal types, item types, etc.
+    - **repositories**: Spring Data JPA repositories.
+    - **services**: Business logic.
+- **src/main/resources**: Application properties, Flyway migration scripts, etc.
+
+## Contributing
+
+1. Fork the project.
+2. Create a branch for your feature or bug fix (`git checkout -b feature/your-feature`).
+3. Commit your changes.
+4. Open a pull request.
+
+## License
+
+This project does not have a specified license. Please contact the maintainers for more information.
+
+---
+
+We hope this Meal Planner Backend is useful! If you have any questions or suggestions, please open an issue or contact the maintainers.
+
+**Frontend Repository:** [Meal Planner Frontend](https://github.com/MrW1cked/Meal-Planner-Front.git)
