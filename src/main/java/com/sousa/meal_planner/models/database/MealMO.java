@@ -3,7 +3,10 @@ package com.sousa.meal_planner.models.database;
 import com.sousa.meal_planner.models.enums.ItemTypeEnum;
 import com.sousa.meal_planner.models.enums.MealType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;

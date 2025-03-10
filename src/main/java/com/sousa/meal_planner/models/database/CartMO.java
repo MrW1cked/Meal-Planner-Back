@@ -2,7 +2,10 @@ package com.sousa.meal_planner.models.database;
 
 import com.sousa.meal_planner.models.enums.ItemTypeEnum;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
